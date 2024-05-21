@@ -2,10 +2,10 @@ from fer import Video, FER
 import cv2
 import time
 
-feed = cv2.VideoCapture(0)
-detector = FER(mtcnn=True)
+feed = cv2.VideoCapture(0) #0 --> Default webcam
+detector = FER(mtcnn=True) #if set to false, it uses haarcascade
 
-emo_map = {"neutral": "😑",
+emo_map = {"neutral": "😑", #maps an emoji to the emotions
            "happy": "😀",
            "sad": "😔",
            "angry": "😡",
@@ -34,7 +34,8 @@ try:
         print(emo_map[emotion_text.split(':')[0]], emotion_type)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-        time.sleep(0.5)
+        time.sleep(0.1)
+#         TODO: send a POST request to rest api
 except KeyboardInterrupt:
     print("Interrupted by user")
 
