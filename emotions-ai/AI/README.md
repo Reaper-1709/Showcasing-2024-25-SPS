@@ -15,7 +15,7 @@ python main.py
 python web_server.py
 ```
 
-- Then you can navigate to [http://localhost:8000](http://localhost:8000) in your browser.
+- Then you can navigate to [http://localhost:2319](http://localhost:2319) in your browser.
 
 # How it works
 
