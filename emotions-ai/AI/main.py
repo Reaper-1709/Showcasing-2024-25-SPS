@@ -5,7 +5,7 @@ import time
 feed = cv2.VideoCapture(0) #0 --> Default webcam
 detector = FER(mtcnn=True) #if set to false, it uses haarcascade
 
-emo_map = {"neutral": "😑", #maps an emoji to the emotions
+emo_map = {"neutral": "😑", #maps an emoji to the emotions.
            "happy": "😀",
            "sad": "😔",
            "angry": "😡",
