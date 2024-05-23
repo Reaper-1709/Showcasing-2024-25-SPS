@@ -1,22 +1,25 @@
-from flask import Flask, render_template, request, g
+from flask import Flask, jsonify, redirect, render_template, request, g, url_for, json
 
 app: Flask = Flask(__name__)
-
+app.json.ensure_ascii=False
+vars = {'emoji': ''}
 
 @app.route('/')
 def home():
-    g.emoji = 'hello'
-    return render_template('index.html')
+    return render_template('index.html', emoji=vars['emoji'])
 
-@app.route('/set_emoji', methods=['POST', 'GET'])
-def get_emoji():
-    g.emoji = request.args.get('emoji')
-    set_emoji()
-    return g.emoji
-
-@app.context_processor
+@app.route('/set_emoji', methods=['POST'])
 def set_emoji():
-    return {'emoji': g.emoji}
+    vars['emoji'] = request.form.get('emoji')
+    return vars['emoji']
+
+@app.route('/get_emoji', methods=['GET'])
+def get_emoji():
+
+    return vars['emoji']
+# @app.context_processor
+# def set_emoji():
+#     return {'emoji': g.emoji}
 
 
 if __name__=="__main__":

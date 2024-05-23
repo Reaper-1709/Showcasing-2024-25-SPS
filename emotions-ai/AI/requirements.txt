@@ -1,0 +1,6 @@
+fer
+tensorflow
+pandas
+cv2
+requests
+flask

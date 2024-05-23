@@ -4,6 +4,11 @@
 
 # Instructions for Use
 
+- Install all the dependencies:
+```bash
+pip install -r requirements.txt
+```
+
 - First start the emtion detection model:
 
 ```bash

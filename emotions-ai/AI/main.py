@@ -1,6 +1,7 @@
 from fer import Video, FER
 import cv2
 import time
+import requests
 
 feed = cv2.VideoCapture(0) #0 --> Default webcam
 detector = FER(mtcnn=True) #if set to false, it uses haarcascade
@@ -35,7 +36,7 @@ try:
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         time.sleep(0.1)
-#         TODO: send a POST request to rest api
+        requests.post('http://localhost:2319/set_emoji', data={'emoji': emo_map[emotion_text.split(':')[0]]})
 except KeyboardInterrupt:
     print("Interrupted by user")
 
