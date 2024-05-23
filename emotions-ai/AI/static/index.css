@@ -4,3 +4,17 @@
 		margin: auto;
 		font-size: 3000%;
 }
+html {
+	height: 100%;
+	background: linear-gradient(45deg, #009eed, #00ff60);
+    background-size: 200% 200%;
+
+    animation: gradient 5s ease infinite;
+}
+
+
+@keyframes gradient {
+    0%{background-position:2% 0%}
+    50%{background-position:99% 100%}
+    100%{background-position:2% 0%}
+}
