@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <html lang="en">
-	<script src="{{ url_for('static', filename='htmx.min.js') }}"></script>
+ 	<script src="{{ url_for('static', filename='htmx.min.js') }}"></script> 
     <head>
         <title>
-            Detected Emotion: {{emoji}}
+				Emotion Detection
         </title>
     </head>
-	<body hx-get="{{url_for('get_emoji')}}" hx-trigger="every 0.1s" hx-swap="innerHTML">
-    Detected Emotion: {emoji}
-    Detetcted Emotion: {{emoji}}
+	<body hx-get="{{url_for('get_emoji')}}" hx-trigger="every 0.1s" hx-target="#emoji">
+    Detected Emotion: <div id="emoji"></div>
 </body>
 </html>
