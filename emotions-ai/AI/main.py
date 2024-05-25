@@ -13,6 +13,13 @@ emo_map = {"neutral": "😑", #maps an emoji to the emotions
            "surprise": "😮",
            "disgust": "🤢",
            "fear": "😨"}
+emo_grammar = {"neutral": "neutral",
+        "happy": "happy",
+        "sad": "sad",
+        "angry": "angry",
+        "surprise": "surprised",
+        "disgust": "disgusted",
+        "fear": "afraid"}
 
 try:
     while True:
@@ -36,7 +43,7 @@ try:
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         time.sleep(0.1)
-        requests.post('http://localhost:2319/set_emoji', data={'emoji': emo_map[emotion_text.split(':')[0]]})
+        requests.post('http://localhost:2319/set_emoji', data={'emoji': emo_map[emotion_type], 'emotion': emo_grammar[emotion_type], 'surety': f"{emotion_score:.2f}"})
 except KeyboardInterrupt:
     print("Interrupted by user")
 
