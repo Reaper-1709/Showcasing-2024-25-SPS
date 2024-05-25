@@ -4,7 +4,8 @@ app: Flask = Flask(__name__)
 app.json.ensure_ascii=False # for sending utf-8/unicode characters (emojis). prolly needed, but i wouldnt touch it
 vars = {'emoji': '',
         'emotion': '',
-        'surety': ''} # instead of using the problematic flask.g, (for global variables), a dict is 1000x better.
+        'surety': '',
+        'no_face': ''} # instead of using the problematic flask.g, (for global variables), a dict is 1000x better.
 
 @app.route('/')
 def home():
@@ -15,12 +16,16 @@ def set_emoji():
     vars['emoji'] = request.form.get('emoji')
     vars['surety'] = request.form.get('surety')
     vars['emotion'] = request.form.get('emotion')
+    vars['no_face'] = request.form.get('no_face')
+    if vars['no_face']=='True':
+        return f"<span class='emoji'>❔</span>\n<span class='text'> No faces found!</span>"
     return f"<span class='emoji'>{vars['emoji']}</span>\n<span class='text'>{vars['surety']}% sure that you are {vars['emotion']}.</span>"
 
 @app.route('/get_emoji', methods=['GET'])
 def get_emoji():
+    if vars['no_face']=='True':
+        return f"<span class='emoji'>❔</span>\n<span class='text'> No faces found!</span>"
     return f"<span class='emoji'>{vars['emoji']}</span>\n<span class='text'>{vars['surety']}% sure that you are {vars['emotion']}.</span>"
-
 
 if __name__=="__main__":
     app.run(port=2319, debug=True)
