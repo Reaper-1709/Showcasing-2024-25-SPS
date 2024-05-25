@@ -4,19 +4,27 @@
 		margin: auto;
 		vertical-align: middle;
 		text-align: center;
+		background: inherit;
 }
 
 .emoji {
 		font-size: 3000%;
 		vertical-align: middle;
+		text-align: center;
 }
 
 .text {
 	display: block;
 	font-size: 300%;
-}
+	text-align: center;
+	text-transform: uppercase;
+	background: inherit;
+	color: white;
+	mix-blend-mode: difference;
+	font-family: "Helvetica";
 
-html {
+}
+body {
 	height: 100%;
 	background: linear-gradient(-45deg, #F0ABFC, #334498, #23a6d5, #23d5ab);
 	background-size: 400% 400%;
