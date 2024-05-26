@@ -13,6 +13,10 @@
 		text-align: center;
 }
 
+.emotion {
+		font-weight: bold;
+}
+
 .text {
 	display: block;
 	font-size: 300%;

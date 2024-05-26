@@ -19,13 +19,13 @@ def set_emoji():
     vars['no_face'] = request.form.get('no_face')
     if vars['no_face']=='True':
         return f"<span class='emoji'>❔</span>\n<span class='text'> No faces found!</span>"
-    return f"<span class='emoji'>{vars['emoji']}</span>\n<span class='text'>{vars['surety']}% sure that you are {vars['emotion']}.</span>"
+    return f"<span class='emoji'>{vars['emoji']}</span>\n<span class='text'>{vars['surety']}% sure that you are <span class='emotion'>{vars['emotion']}</span>.</span>"
 
 @app.route('/get_emoji', methods=['GET'])
 def get_emoji():
     if vars['no_face']=='True':
         return f"<span class='emoji'>❔</span>\n<span class='text'> No faces found!</span>"
-    return f"<span class='emoji'>{vars['emoji']}</span>\n<span class='text'>{vars['surety']}% sure that you are {vars['emotion']}.</span>"
+    return f"<span class='emoji'>{vars['emoji']}</span>\n<span class='text'>{vars['surety']}% sure that you are <span class='emotion'>{vars['emotion']}</span>.</span>"
 
 if __name__=="__main__":
     app.run(port=2319, debug=True)
