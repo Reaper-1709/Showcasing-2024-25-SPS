@@ -12,13 +12,13 @@ global_variables: Dict[str, str] = {'emoji': '',
 
 
 @app.route('/')
-def home():
+def home() -> str:
     """Renders the main homepage (index.html) with the specified emoji"""
     return render_template('index.html', emoji=global_variables['emoji'])
 
 
 @app.route('/set_emoji', methods=['POST'])
-def set_emoji():
+def set_emoji() -> str:
     """POST /set_emoji endpoint to set the emoji and other data"""
     global_variables['emoji'] = str(request.form.get('emoji'))
     global_variables['surety'] = str(request.form.get('surety'))
@@ -32,7 +32,7 @@ def set_emoji():
 
 
 @app.route('/get_emoji', methods=['GET'])
-def get_emoji():
+def get_emoji() -> str:
     """GET /get_emoji enpoint to fetch current emoji and other data"""
     if global_variables['no_face'] == 'True':
         return "<span class='emoji'>❔</span>\n<span class='text'> No faces found!</span>"
