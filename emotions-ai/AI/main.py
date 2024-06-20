@@ -22,7 +22,7 @@ emo_grammar = {"neutral": "neutral",
                "surprise": "surprised",
                "disgust": "disgusted",
                "fear": "afraid"}
-
+timeout = 0.1
 try:
     while True:
         avail, frame = feed.read()  # avail --> if the webcam is available
@@ -45,12 +45,17 @@ try:
             emotion_text = f"{emotion_type}: {emotion_score:.2f}"
             cv2.putText(frame, emotion_text, (x, y - 10),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
-        session.post('http://localhost:2319/set_emoji', data={'no_face': str(
-            no_face), 'emoji': emo_map[emotion_type], 'emotion': emo_grammar[emotion_type], 'surety': f"{emotion_score:.2f}"}, timeout=0.1)
+        try:
+            session.post('http://localhost:2319/set_emoji', data={'no_face': str(
+            no_face), 'emoji': emo_map[emotion_type], 'emotion': emo_grammar[emotion_type], 'surety': f"{int(emotion_score*100)}"}, timeout=timeout)
+        except requests.Timeout as te:
+            print(f"timeout with timeout = {timeout}s; increasing by 0.5s")
+            timeout+=0.5
+            continue
         # print(emo_map[emotion_type], emotion_type, no_face)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-        time.sleep(0.1)
+        time.sleep(0.25)
 except KeyboardInterrupt:
     print("Interrupted by user")
 
