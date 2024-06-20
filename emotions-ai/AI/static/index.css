@@ -1,3 +1,14 @@
+#movies {
+		vertical-align: middle;
+		text-align: left;
+		height: 100%;
+}
+
+#songs {
+		vertical-align: middle;
+		text-align: right;
+		height: 100%;
+}
 #emoji {
 		width:100%;
 		height: 100%;
