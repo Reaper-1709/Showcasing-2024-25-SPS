@@ -4,17 +4,33 @@
  	<script src="{{ url_for('static', filename='htmx.min.js') }}"></script>
 	<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <head>
+	<head>
         <title>
 				Emotion Detection
         </title>
     </head>
+<p hx-post="{{url_for('home')}}" hx-trigger="every 1s" hx-target="html" hx-swap="innerHTML"></p>
 	<body hx-get="{{url_for('get_emoji')}}" hx-trigger="every 0.25s" hx-target="#emoji">
 		<center>
 				<div id="emoji"></div>
 		</center>
 		
-		<div id="movies">test</div>
+		<div id="movies">
+				<table>
+						<thead>
+								<tr>
+										<th>Movie</th>
+								</tr>
+						</thead>
+						<tbody>
+								{% for movie in movies %}
+								<tr>
+										<td>{{movie}}</td>
+								</tr>
+								{% endfor %}
+						</tbody>
+				</table>
+		</div>
 		<div id="songs">hi</div>
 </body>
 </html>
