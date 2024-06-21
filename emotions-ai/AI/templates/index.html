@@ -9,14 +9,13 @@
 				Emotion Detection
         </title>
     </head>
-<p hx-post="{{url_for('home')}}" hx-trigger="every 1s" hx-target="html" hx-swap="innerHTML"></p>
 	<body hx-get="{{url_for('get_emoji')}}" hx-trigger="every 0.25s" hx-target="#emoji">
 		<center>
 				<div id="emoji"></div>
 		</center>
 		
-		<div id="movies">
-				<table>
+		<div id="movies" hx-get="{{url_for('get_songs')}}" hx-trigger="every 0.3s" hx-target=".movtable" hx-swap="outerHTML">
+				<table class="movtable">
 						<thead>
 								<tr>
 										<th>Movie</th>
@@ -31,6 +30,5 @@
 						</tbody>
 				</table>
 		</div>
-		<div id="songs">hi</div>
 </body>
 </html>
