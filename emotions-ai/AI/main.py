@@ -4,10 +4,23 @@ from fer import Video, FER
 import cv2
 import time
 import requests
+import serial
+
 session = requests.Session()
 feed = cv2.VideoCapture(0)  # 0 --> Default webcam
 detector = FER(mtcnn=True)  # if set to false, it uses haarcascade
+port = '/dev/ttyUSB0'
+ser = serial.Serial(port=port, baudrate=9600)
 
+emo_arduino = {
+        "angry": 0,
+        "disgust": 1,
+        "fear": 2,
+        "happy": 3,
+        "sad": 4,
+        "surprise": 5,
+        "neutral": 6,
+        }
 emo_map = {"neutral": "😑",  # maps an emoji to the emotions
            "happy": "😀",
            "sad": "😔",
@@ -53,6 +66,7 @@ try:
             timeout+=0.5
             continue
         # print(emo_map[emotion_type], emotion_type, no_face)
+        ser.write(f'{emo_arduino[emotion_type]},7,0,0,0\n'.encode())
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         time.sleep(0.25)
