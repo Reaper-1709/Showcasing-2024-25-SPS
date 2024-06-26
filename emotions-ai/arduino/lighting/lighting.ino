@@ -29,7 +29,7 @@ void loop() {
     int customColorMoodCharVal = Serial.readStringUntil(',').toInt();
     int redVal = Serial.readStringUntil(',').toInt();
     int greenVal = Serial.readStringUntil(',').toInt();
-    int blueVal = Serial.readStringUntil('\n').toInt();
+    int blueVal = Serial.readStringUntil(':').toInt();
 
     // Set color based on customization flag
     setColorFromInput(moodCharVal, customColorMoodCharVal, redVal, greenVal, blueVal);

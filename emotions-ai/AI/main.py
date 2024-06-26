@@ -66,7 +66,7 @@ try:
             timeout+=0.5
             continue
         # print(emo_map[emotion_type], emotion_type, no_face)
-        ser.write(f'{emo_arduino[emotion_type]},7,0,0,0\n'.encode())
+        ser.write(f'{emo_arduino[emotion_type]},7,0,0,0:'.encode())
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         time.sleep(0.25)
