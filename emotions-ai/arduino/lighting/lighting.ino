@@ -23,33 +23,28 @@ void setup() {
 
 void loop() {
   if (Serial.available() > 0) {
-
+    Serial.println("hello");
     // Parse data (Example: 1,1,50,60,50) (The value for customColorMoodChar would be left 7 if there is no customization provided by user)
-    int moodCharVal = Serial.readStringUntil(',').toInt();
-    int customColorMoodCharVal = Serial.readStringUntil(',').toInt();
-    int redVal = Serial.readStringUntil(',').toInt();
-    int greenVal = Serial.readStringUntil(',').toInt();
-    int blueVal = Serial.readStringUntil(':').toInt();
-
+    int moodCharVal = Serial.readStringUntil(':').toInt();
+    Serial.println("called");
     // Set color based on customization flag
-    setColorFromInput(moodCharVal, customColorMoodCharVal, redVal, greenVal, blueVal);
+    setColorFromInput(moodCharVal);
   }
 }
 
 // Function to set color based on user input
-void setColorFromInput(int moodChar, int customColorMoodChar, int red, int green, int blue) {
+void setColorFromInput(int moodChar) {
   int* palette = getMoodPalette(moodChar); // Get default palette
 
   // Apply custom color if mood matches custom mood character
-  if (moodChar == customColorMoodChar) {
-    palette[3] = red; // The new red value defined by user
-    palette[4] = green; // The new green value defined by user
-    palette[5] = blue; // The new blue value defined by user
-  }
+//  if (moodChar == customColorMoodChar) {
+//    palette[3] = red; // The new red value defined by user
+//    palette[4] = green; // The new green value defined by user
+//    palette[5] = blue; // The new blue value defined by user
+//  }
 
   // Set the color using the generated palette
-  translateToColor(palette[0], palette[1], palette[2], palette[3], palette[4], palette[5]);
-  delete[] palette; // Deallocate memory after use
+  //delete[] palette; // Deallocate memory after use
 }
 
 // Function to retrieve palette based on mood character
@@ -126,7 +121,7 @@ int* getMoodPalette(int moodChar) {
 }
 
 // Function for color transition
-void translateToColor(int startRed, int startGreen, intStartBlue, int endRed, int endGreen, int endBlue) {
+void translateToColor(int startRed, int startGreen, int startBlue, int endRed, int endGreen, int endBlue) {
   int steps = 20; // Adjust steps for desired transition effect
   int redDiff = (endRed - startRed) / steps;
   int greenDiff = (endGreen - startGreen) / steps;
