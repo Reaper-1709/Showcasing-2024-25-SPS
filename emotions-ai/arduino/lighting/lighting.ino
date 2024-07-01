@@ -1,6 +1,6 @@
-#define redPin 7
-#define greenPin 6
-#define bluePin 5
+#define redPin 9
+#define greenPin 5
+#define bluePin 3
 
 // Mood characters (assuming these values represent different moods (They are taken from FER-2013 website))
 #define MOOD_ANGRY 0
@@ -14,6 +14,7 @@
 int moodChar = MOOD_NEUTRAL; // Default mood
 
 void setup() {
+  
   // Basic arduino setup
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
@@ -23,32 +24,40 @@ void setup() {
 
 void loop() {
   if (Serial.available() > 0) {
-    Serial.println("hello");
+    // Serial.println("hello");
     // Parse data (Example: 1,1,50,60,50) (The value for customColorMoodChar would be left 7 if there is no customization provided by user)
     int moodCharVal = Serial.readStringUntil(':').toInt();
-    Serial.println("called");
+    int * palette = getMoodPalette(moodCharVal);
+    //Serial.println(palette[0], palette[1], palette[2]);
+    for (int i = 0; i < 6; i++) {
+      Serial.println(palette[i]);
+    }
+    translateToColor(palette[0], palette[1], palette[2], palette[3], palette[4], palette[5]);
+
+    // Serial.println("called");
     // Set color based on customization flag
-    setColorFromInput(moodCharVal);
+    Serial.println("set color");
+
   }
 }
 
 // Function to set color based on user input
-void setColorFromInput(int moodChar) {
-  int* palette = getMoodPalette(moodChar); // Get default palette
+// void setColorFromInput(int moodChar) {
+//    // Get default palette
 
-  // Apply custom color if mood matches custom mood character
-//  if (moodChar == customColorMoodChar) {
-//    palette[3] = red; // The new red value defined by user
-//    palette[4] = green; // The new green value defined by user
-//    palette[5] = blue; // The new blue value defined by user
-//  }
+//   // Apply custom color if mood matches custom mood character
+// //  if (moodChar == customColorMoodChar) {
+// //    palette[3] = red; // The new red value defined by user
+// //    palette[4] = green; // The new green value defined by user
+// //    palette[5] = blue; // The new blue value defined by user
+// //  }
 
-  // Set the color using the generated palette
-  //delete[] palette; // Deallocate memory after use
-}
+//   // Set the color using the generated palette
+//   //delete[] palette; // Deallocate memory after use
+// }
 
 // Function to retrieve palette based on mood character
-int* getMoodPalette(int moodChar) {
+int * getMoodPalette(int moodChar) {
   static int palette[6]; // Pre-allocate memory for palette (static for efficiency)
 
   switch (moodChar) { // To get the required composition
@@ -77,7 +86,7 @@ int* getMoodPalette(int moodChar) {
       palette[5] = 255; // Sky Blue
       break;
     case MOOD_HAPPY: // Happy (Yellow)
-      palette[0] = 255; // Yellow
+      palette[0] = 240; // Yellow
       palette[1] = 200; // Gold
       palette[2] = 0;   // Dark Orange
       palette[3] = 255; // Yellow
