@@ -1,14 +1,37 @@
-#movies {
-		vertical-align: middle;
-		text-align: left;
-		height: 100%;
+#books {
+/*	position: absolute;
+	top: 50%;
+	float: left;
+	vertical-align: middle;
+	text-align: left;
+	height: 100%;*/
+		position: absolute;
+		top: 50%;
+		display: flex;
+		align-items: center;
+		left: 0;
 }
 
 #songs {
+/*		position: absolute;
+		top: 50%;
+		float: right;
 		vertical-align: middle;
 		text-align: right;
-		height: 100%;
+		height: 100%;*/
+		position: absolute;
+		top: 50%;
+		display: flex;
+		align-items: center;
+		right: 0;
 }
+
+table, tr, th {
+		font-family: "Helvetica";
+		border: 2px solid black;
+		background-color: white;
+}
+
 #emoji {
 		width:100%;
 		height: 100%;

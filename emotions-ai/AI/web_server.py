@@ -7,16 +7,17 @@ app: Flask = Flask(__name__)
 global_variables: Dict[str, str] = {'emoji': '😎',
                          # instead of using the problematic flask.g, (for global variables), a dict
                                     'emotion': 'sad',
-                                    'surety': '100%',  # is 1000x better.
+                                    'surety': '100',  # is 1000x better.
                                     'no_face': 'False',
                                     }
 
-songs: Dict[str, List[str]] = {'sad': ['arijit singh']}
+books: Dict[str, List[str]] = {'sad': ['the hobbit']}
+songs: Dict[str, List[str]] = {'sad': ['smth']}
 
 @app.route('/')
 def home() -> str:
     """Renders the main homepage (index.html) with the specified emoji"""
-    return render_template('index.html', emoji=global_variables['emoji'], movies=global_variables['movies'])
+    return render_template('index.html', emoji=global_variables['emoji'], )
 
 
 @app.route('/set_emoji', methods=['POST'])
@@ -42,12 +43,21 @@ def get_emoji() -> str:
         f"{global_variables['surety']}% sure that you are <span class='emotion'>" \
         f"{global_variables['emotion']}</span>.</span>"
 
+@app.route('/get_books', methods=['GET'])
+def get_books() -> str:
+    return tablize(content=books[global_variables['emotion']], html_id='booktable', title='Books')
+
 @app.route('/get_songs', methods=['GET'])
 def get_songs() -> str:
-    pass
+    return tablize(content=songs[global_variables['emotion']], html_id='songtable', title='Songs')
 
-def tablize(content: List[str], html_class: str) -> str:
-    fin_str: str = f'<table class="{html_class}>'
+def tablize(content: List[str], html_id: str, title: str) -> str:
+    fin_str: str = f'''<table id="{html_id}"><thead><tr><th>{title}</th></tr></thead><tbody>'''
+    for el in content:
+        fin_str += f'''<tr><td>{el}</td></tr>'''
+        continue
+    fin_str += '''</tbody></table>'''
+    return fin_str
 
 
 

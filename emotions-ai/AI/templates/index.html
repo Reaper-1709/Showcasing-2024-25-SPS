@@ -14,8 +14,8 @@
 				<div id="emoji"></div>
 		</center>
 		
-		<div id="movies" hx-get="{{url_for('get_songs')}}" hx-trigger="every 0.3s" hx-target=".movtable" hx-swap="outerHTML">
-				<table class="movtable">
+		<div id="books" hx-get="{{url_for('get_books')}}" hx-trigger="every 0.3s" hx-target="#booktable" hx-swap="outerHTML">
+				<table id="booktable">
 						<thead>
 								<tr>
 										<th>Movie</th>
@@ -30,5 +30,23 @@
 						</tbody>
 				</table>
 		</div>
+
+		<div id="songs" hx-get="{{url_for('get_songs')}}" hx-trigger="every 0.3s" hx-target="#songtable" hx-swap="outerHTML">
+				<table id="songtable">
+						<thead>
+								<tr>
+										<th>Movie</th>
+								</tr>
+						</thead>
+						<tbody>
+								{% for movie in movies %}
+								<tr>
+										<td>{{movie}}</td>
+								</tr>
+								{% endfor %}
+						</tbody>
+				</table>
+		</div>
+
 </body>
 </html>
