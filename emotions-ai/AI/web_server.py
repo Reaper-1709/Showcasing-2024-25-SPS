@@ -60,12 +60,16 @@ def get_emoji() -> str:
 
 @app.route('/get_books', methods=['GET'])
 def get_books() -> str:
-    return tablize(content=books[global_variables['emotion']], html_id='booktable', title='Books')
+    if global_variables['no_face'] == 'True':
+        return tablize(content=[], html_id='booktable', title='Books you might like.')
+    return tablize(content=books[global_variables['emotion']], html_id='booktable', title='Books you might like.')
 
 
 @app.route('/get_songs', methods=['GET'])
 def get_songs() -> str:
-    return tablize(content=songs[global_variables['emotion']], html_id='songtable', title='Songs')
+    if global_variables['no_face'] == 'True':
+        return tablize(content=[], html_id='songtable', title='Songs you might like.')
+    return tablize(content=songs[global_variables['emotion']], html_id='songtable', title='Songs you might like.')
 
 
 def tablize(content: List[str], html_id: str, title: str) -> str:

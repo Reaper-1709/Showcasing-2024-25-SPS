@@ -67,9 +67,9 @@ try:
             continue
         # print(emo_map[emotion_type], emotion_type, no_face)
         if not no_face:
-            ser.write(f'{emo_arduino[emotion_type]},7,0,0,0:'.encode())
+            ser.write(f'{emo_arduino[emotion_type]}:'.encode())
         elif no_face:
-            ser.write('2319,7,0,0,0:'.encode())
+            ser.write('2319:'.encode())
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         time.sleep(0.25)
