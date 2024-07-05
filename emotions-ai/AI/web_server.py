@@ -11,8 +11,21 @@ global_variables: Dict[str, str] = {'emoji': '😎',
                                     'no_face': 'False',
                                     }
 
-books: Dict[str, List[str]] = {'sad': ['the hobbit']}
-songs: Dict[str, List[str]] = {'sad': ['smth']}
+books: Dict[str, List[str]] = {'sad': ['Someone Like You (by Adele)', 'Stay With Me (by Sam Smith)', 'Muskurane Ki Wajah Tum Ho (by Arijit Singh)'],
+        'happy': ['Happy (by Pharrell Williams)', 'Can\'t Stop the Feeling! (by Justin Timberlake)', 'Khwabon Ke Parinde (by A.R. Rahman)'],
+        'neutral': [],
+        'angry': ['The Way I Am (by Eminem)', 'In The End (by Linkin Park)', 'Jee Karda (by Divya Kumar)'],
+        'fear': ['Thriller (by Michael Jackson)', 'Disturbia (by Rihanna)', 'Aayega Aanewala (by Lata Mangeshkar)'],
+        'surprise': [],
+        'disgust': []}
+
+songs: Dict[str, List[str]] = {'sad': ['The Kite Runner (by Khaled Hosseini)', 'A Little Life (by Hanya Yanagihara'],
+        'happy': ['The Alchemist (by Paulo Coelho)', 'To Kill a Mockingbird (by Harper Lee)'],
+        'neutral': [],
+        'angry': ['Anger Management For Dummies', 'Why We Get Mad (by Daniel H. Pink'],
+        'fear': ['The Exorcist (by William Blatty)', 'Salem\'s Lot (by Stephen King)'],
+        'surprise': [],
+        'disgust': []}
 
 @app.route('/')
 def home() -> str:
@@ -52,7 +65,7 @@ def get_songs() -> str:
     return tablize(content=songs[global_variables['emotion']], html_id='songtable', title='Songs')
 
 def tablize(content: List[str], html_id: str, title: str) -> str:
-    fin_str: str = f'''<table id="{html_id}"><thead><tr><th>{title}</th></tr></thead><tbody>'''
+    fin_str: str = f'''<table id="{html_id}"><thead><tr><th>{title}</th></tr></thead><body>'''
     for el in content:
         fin_str += f'''<tr><td>{el}</td></tr>'''
         continue
