@@ -9,7 +9,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 session = requests.Session()
 feed = cv2.VideoCapture(0)  # 0 --> Default webcam
 detector = FER(mtcnn=True)  # if set to false, it uses haarcascade
-port = '/dev/ttyUSB0'
+port = 'COM3'
 ser = serial.Serial(port=port, baudrate=9600)
 
 emo_arduino = {
@@ -45,6 +45,9 @@ try:
         result = detector.detect_emotions(frame)
         if not result:
             no_face = True
+            emotion_type = 'neutral'
+            emotion_score = 100
+            emotion_text= 'blah'
 
         for face in result:
             box = face["box"]
@@ -58,6 +61,8 @@ try:
             emotion_text = f"{emotion_type}: {emotion_score:.2f}"
             cv2.putText(frame, emotion_text, (x, y - 10),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+        # breakpoint()
+        # print(emotion_type)
         try:
             session.post('http://localhost:2319/set_emoji', data={'no_face': str(
                 no_face), 'emoji': emo_map[emotion_type], 'emotion': emo_grammar[emotion_type], 'surety': f"{int(emotion_score*100)}"}, timeout=timeout)
