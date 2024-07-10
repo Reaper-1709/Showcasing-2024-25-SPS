@@ -15,17 +15,17 @@ books: Dict[str, List[str]] = {'sad': ['Someone Like You (by Adele)', 'Stay With
                                'happy': ['Happy (by Pharrell Williams)', 'Can\'t Stop the Feeling! (by Justin Timberlake)', 'Khwabon Ke Parinde (by A.R. Rahman)'],
                                'neutral': [],
                                'angry': ['The Way I Am (by Eminem)', 'In The End (by Linkin Park)', 'Jee Karda (by Divya Kumar)'],
-                               'fear': ['Thriller (by Michael Jackson)', 'Disturbia (by Rihanna)', 'Aayega Aanewala (by Lata Mangeshkar)'],
-                               'surprise': [],
-                               'disgust': []}
+                               'afraid': ['Thriller (by Michael Jackson)', 'Disturbia (by Rihanna)', 'Aayega Aanewala (by Lata Mangeshkar)'],
+                               'surprised': [],
+                               'disgusted': []}
 
 songs: Dict[str, List[str]] = {'sad': ['The Kite Runner (by Khaled Hosseini)', 'A Little Life (by Hanya Yanagihara'],
                                'happy': ['The Alchemist (by Paulo Coelho)', 'To Kill a Mockingbird (by Harper Lee)'],
                                'neutral': [],
                                'angry': ['Anger Management For Dummies', 'Why We Get Mad (by Daniel H. Pink'],
-                               'fear': ['The Exorcist (by William Blatty)', 'Salem\'s Lot (by Stephen King)'],
-                               'surprise': [],
-                               'disgust': []}
+                               'afraid': ['The Exorcist (by William Blatty)', 'Salem\'s Lot (by Stephen King)'],
+                               'surprised': [],
+                               'disgusted': []}
 
 
 @app.route('/')
