@@ -9,7 +9,7 @@
 		top: 50%;
 		display: flex;
 		align-items: center;
-		left: 5px;
+		left: 20px;
 } 
  
 #songs { 
@@ -23,18 +23,32 @@
 		top: 50%;
 		display: flex;
 		align-items: center;
-		right: 5px;
+		right: 20px;
 } 
  
 table, tr, th { 
-		font-family: "Helvetica";
-		color: white;
-		border: 2px solid white;
-		background-color: black;
+    font-family: "Helvetica", sans-serif;
+    color: cornsilk; /* Text color for contrast */
+    border: 2px solid black;
+    border-radius: 6px;
+	height: 100%;
+	background: #3A1C71;  /* fallback for old browsers */
+	background-size: 400% 400%;
+	background: linear-gradient(-45deg, #FFAF7B, #D76D77, #3A1C71);
+	animation: gradienttable 15s ease infinite;
+
+	
+}
+
+th, td{
+	padding: 5px;
+	border: none;
+	border-radius: 0%;
 }
 
 th {
 		font-weight: bold;
+		border-bottom: 2px solid white;
 }
 
 #emoji {
@@ -76,6 +90,20 @@ body {
 }
 
 @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes gradienttable {
 	0% {
 		background-position: 0% 50%;
 	}

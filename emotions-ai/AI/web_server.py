@@ -15,17 +15,17 @@ books: Dict[str, List[str]] = {'sad': ['Someone Like You (by Adele)', 'Stay With
                                'happy': ['Happy (by Pharrell Williams)', 'Can\'t Stop the Feeling! (by Justin Timberlake)', 'Khwabon Ke Parinde (by A.R. Rahman)'],
                                'neutral': [],
                                'angry': ['The Way I Am (by Eminem)', 'In The End (by Linkin Park)', 'Jee Karda (by Divya Kumar)'],
-                               'fear': ['Thriller (by Michael Jackson)', 'Disturbia (by Rihanna)', 'Aayega Aanewala (by Lata Mangeshkar)'],
-                               'surprise': [],
-                               'disgust': []}
+                               'afraid': ['Thriller (by Michael Jackson)', 'Disturbia (by Rihanna)', 'Aayega Aanewala (by Lata Mangeshkar)'],
+                               'surprised': [],
+                               'disgusted': []}
 
 songs: Dict[str, List[str]] = {'sad': ['The Kite Runner (by Khaled Hosseini)', 'A Little Life (by Hanya Yanagihara'],
                                'happy': ['The Alchemist (by Paulo Coelho)', 'To Kill a Mockingbird (by Harper Lee)'],
                                'neutral': [],
                                'angry': ['Anger Management For Dummies', 'Why We Get Mad (by Daniel H. Pink'],
-                               'fear': ['The Exorcist (by William Blatty)', 'Salem\'s Lot (by Stephen King)'],
-                               'surprise': [],
-                               'disgust': []}
+                               'afraid': ['The Exorcist (by William Blatty)', 'Salem\'s Lot (by Stephen King)'],
+                               'surprised': [],
+                               'disgusted': []}
 
 
 @app.route('/')
@@ -62,14 +62,14 @@ def get_emoji() -> str:
 def get_books() -> str:
     if global_variables['no_face'] == 'True':
         return tablize(content=[], html_id='booktable', title='Books you might like.')
-    return tablize(content=books[global_variables['emotion']], html_id='booktable', title='Books you might like.')
+    return tablize(content=books[global_variables['emotion']], html_id='booktable', title='Songs you might like.')
 
 
 @app.route('/get_songs', methods=['GET'])
 def get_songs() -> str:
     if global_variables['no_face'] == 'True':
         return tablize(content=[], html_id='songtable', title='Songs you might like.')
-    return tablize(content=songs[global_variables['emotion']], html_id='songtable', title='Songs you might like.')
+    return tablize(content=songs[global_variables['emotion']], html_id='songtable', title='Books you might like.')
 
 
 def tablize(content: List[str], html_id: str, title: str) -> str:
